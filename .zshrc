@@ -10,7 +10,6 @@ ZSH_THEME="robbyrussell"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias tmux="tmux -2"
 
 # Export for virtualenvwrapper.sh to load properly
 export VIRTUALENVWRAPPER_PYTHON="/usr/local/bin/python"
@@ -41,16 +40,13 @@ export VIRTUALENVWRAPPER_PYTHON="/usr/local/bin/python"
 # much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-plugins=(brew coffee cp fabric gem git grep node npm pip postgres python redis-cli ruby tmux uber-projects vagrant virtualenv virtualenvwrapper z)
+plugins=(brew coffee cp fabric gem git grep node npm pip postgres python redis-cli ruby tmux vagrant virtualenv virtualenvwrapper z)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 alias ls='gls --color=auto'
-alias md5sum='gmd5sum'
-alias tmux="TERM=screen-256color-bce tmux"
-alias dev='ssh gabriel.dev -t "zsh"'
-alias ad='ssh adhoc01-sjc1'
+alias tmux="TERM=screen-256color-bce tmux -2"
 
 eval `gdircolors ~/.dir_colors/dircolors.ansi-dark`
 
@@ -59,15 +55,10 @@ export CPPFLAGS="-Qunused-arguments -Wno-parentheses-equality"
 
 export PGTZ=UTC
 export EDITOR="/usr/local/bin/vim"
-export UBER_HOME="/Users/gabrielhaim/uber"
-export WORKON_HOME="/Users/gabrielhaim/.virtualenvs"
+export WORKON_HOME="~/.virtualenvs"
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/share/npm/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
-#export PATH="./node_modules/.bin:$PATH"
-export PATH="/usr/local/opt/ccache/libexec:$PATH"
-export PATH="/usr/local/Cellar/f90cache/0.95/libexec:$PATH"
-export PATH="$UBER_HOME/adt-bundle-mac-x86_64-20140321/sdk/platform-tools:$PATH"
 
 [ -s "/Users/gabrielhaim/.nvm/nvm.sh" ] && . "/Users/gabrielhaim/.nvm/nvm.sh" # This loads nvm

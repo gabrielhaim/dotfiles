@@ -81,17 +81,13 @@ colorscheme solarized
 let mapleader = ","
 
 " Plugin  mapping"
-map <leader>j :RopeGotoDefinition<CR>
-map <leader>r :RopeRename<CR>
-map <leader>n :NERDTree<CR>
-map <leader>p :CtrlP<CR>
-map <leader>g :GundoToggle<CR>
-map <leader>jd :YcmCompleter GoTo<CR>
 nnoremap <leader>a :Ag!
-" nmap <leader>a <Esc>:Ack!
-
-" Alphabetize all selectors with each individual css block in a file (aiden)
-map <Leader>cs :g#\({\n\)\@<=#.,/}/sort<CR>
+nnoremap <leader>g :GundoToggle<CR>
+nnoremap <leader>j :RopeGotoDefinition<CR>
+nnoremap <leader>jd :YcmCompleter GoTo<CR>
+nnoremap <leader>n :NERDTree<CR>
+nnoremap <leader>p :CtrlP<CR>
+nnoremap <leader>r :RopeRename<CR>
 
 " CtrlP parameters
 let g:ctrlp_custom_ignore = {
@@ -108,7 +104,6 @@ let g:syntastic_error_symbol='✘'
 let g:syntastic_warning_symbol='☡'
 let g:syntastic_sign_bg_default=1
 
-" let g:flake8_cmd="/usr/local/bin/flake8"
 let g:flake8_max_line_length=79
 let g:flake8_max_complexity=12
 
@@ -172,9 +167,7 @@ autocmd Filetype jade set sts=2 shiftwidth=2 expandtab
 autocmd Filetype coffee set sts=2 shiftwidth=2 expandtab
 autocmd Filetype json set sts=2 shiftwidth=2 expandtab
 autocmd Filetype eco set sts=2 shiftwidth=2 expandtab
-autocmd Filetype cucumber set sts=2 shiftwidth=2 expandtab
 autocmd Filetype javascript set sts=2 shiftwidth=2 expandtab
-autocmd Filetype lisp set sts=2 shiftwidth=2 expandtab
 autocmd Filetype ruby set sts=2 shiftwidth=2 expandtab
 autocmd Filetype xml set sts=2 shiftwidth=2 expandtab
 autocmd Filetype html set sts=2 shiftwidth=2 expandtab
@@ -186,10 +179,9 @@ autocmd Filetype java set sts=2 shiftwidth=2 expandtab nolist
 autocmd Filetype stylus set sts=2 shiftwidth=2 expandtab
 autocmd Filetype xslt,diff set expandtab
 
-autocmd BufReadPre viper,.viper set filetype=lisp
 autocmd BufRead *.py set cindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd BufRead *.py nnoremap <c-p> :normal oimport ipdb; ipdb.set_trace()<esc>
-autocmd BufNewFile,BufRead requirements*.txt set filetype=config
+autocmd BufNewFile,BufRead requirements*.txt set ft=config
 autocmd BufNewFile,BufRead *.json,*.conf set ft=json
 autocmd BufNewFile,BufRead *.yaml,*.yml set ft=yaml
 autocmd BufRead,BufNewFile *.cnf set ft=gitconfig
