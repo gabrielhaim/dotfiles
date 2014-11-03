@@ -1,0 +1,17 @@
+[user]
+	name = Gabriel Haim
+	email = gabriel@uber.com
+[github]
+	user = gabrielhaim
+[branch]
+	autosetuprebase = always
+[core]
+	editor = /usr/local/bin/vim
+	excludesfile = /Users/gabrielhaim/.gitignore_global
+[color]
+	ui = true
+[push]
+	default = nothing
+[url "git@github.com:"]
+	# Always use Github SSH protocol
+	insteadOf = https://github.com
