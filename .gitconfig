@@ -13,5 +13,4 @@
 [push]
 	default = nothing
 [url "git@github.com:"]
-	# Always use Github SSH protocol
 	insteadOf = https://github.com
