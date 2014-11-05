@@ -2,10 +2,7 @@
 ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+ZSH_THEME="gabrielhaim"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -61,4 +58,4 @@ export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/share/npm/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 
-[ -s "/Users/gabrielhaim/.nvm/nvm.sh" ] && . "/Users/gabrielhaim/.nvm/nvm.sh" # This loads nvm
+[ -s "$HOME/.nvm/nvm.sh" ] && . "$HOME/.nvm/nvm.sh" # This loads nvm

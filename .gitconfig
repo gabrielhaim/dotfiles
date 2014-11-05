@@ -7,7 +7,7 @@
 	autosetuprebase = always
 [core]
 	editor = /usr/local/bin/vim
-	excludesfile = /Users/gabrielhaim/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [color]
 	ui = true
 [push]
