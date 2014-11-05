@@ -2,7 +2,7 @@
 ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
-ZSH_THEME="gabrielhaim"
+ZSH_THEME="gabriel"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
