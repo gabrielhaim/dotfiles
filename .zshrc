@@ -44,6 +44,7 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 alias ls='gls --color=auto'
 alias tmux="TERM=screen-256color-bce tmux -2"
+alias rsync="rsync --progress"
 
 eval `gdircolors ~/.dir_colors/dircolors.ansi-dark`
 
