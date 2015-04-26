@@ -163,7 +163,7 @@ nmap <silent> <leader>s :set nolist!<CR>
 autocmd Filetype sh set ts=4 shiftwidth=2 expandtab
 autocmd Filetype mkd set sts=4 shiftwidth=4 expandtab
 autocmd Filetype sql set sts=4 shiftwidth=4 expandtab
-autocmd Filetype python set sts=4 shiftwidth=4 expandtab
+autocmd Filetype python,go set sts=4 shiftwidth=4 expandtab
 autocmd Filetype nginx set sts=4 shiftwidth=4 expandtab
 autocmd Filetype jade set sts=2 shiftwidth=2 expandtab
 autocmd Filetype coffee set sts=2 shiftwidth=2 expandtab
