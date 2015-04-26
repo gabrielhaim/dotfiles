@@ -1,0 +1,13 @@
+set input-meta on
+set output-meta on
+
+uncomment if you want vi-style binds
+set editing-mode vi
+set bell-style visible
+set colored-stats on
+set history-size 100000
+
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+"\e[C": forward-char
+"\e[D": backward-char
