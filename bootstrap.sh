@@ -5,7 +5,7 @@ git pull origin master;
 function doIt() {
     rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" \
         --exclude "README.md" -avh --no-perms . ~;
-    source ~/.zshrc;
+    zsh; source ~/.zshrc;
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then

@@ -109,6 +109,13 @@ let g:syntastic_sign_bg_default=1
 let g:flake8_max_line_length=79
 let g:flake8_max_complexity=12
 
+" Go parameters
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+
 " Markdown parameters
 let g:vim_markdown_folding_disabled=1
 
