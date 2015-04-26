@@ -38,6 +38,7 @@ Plugin 'vim-scripts/SQLUtilities'         " SQL Formatter and tools
 Plugin 'tpope/vim-vinegar'                " Better directory viewer
 Plugin 'elzr/vim-json'                    " Better JSON syntax
 Plugin 'tpope/vim-fireplace'              " Clojure plugin
+Plugin 'fatih/vim-go'                     " Better go
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
