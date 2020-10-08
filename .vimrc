@@ -1,64 +1,60 @@
 " Vim Configuration file"
-" vimrc for python IDE and javascript use"
-" Gabriel Haim"
+" vimrc for Python and Golang IDE"
+" Gabriel Haim 2020-02-20"
 
-" Vundle plugin manager
-" ---------------------
-set nocompatible             " be iMproved, required
-filetype off                 " required
+" VimPlug
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'                " Vundle installer
-Plugin 'mileszs/ack.vim'                  " Ack in-file search
-Plugin 'tpope/vim-fugitive'               " Best git wrapper
-Plugin 'kien/ctrlp.vim'                   " Fuzzy search
-Plugin 'plasticboy/vim-markdown'          " .md files
-Plugin 'sjl/gundo.vim'                    " Undo tree
-Plugin 'Lokaltog/powerline'               " Status line
-Plugin 'Valloric/YouCompleteMe'           " Auto complete on steroids
-Plugin 'rking/ag.vim'                     " Silver searcher (replace ack?)
-Plugin 'jelera/vim-javascript-syntax'     " Better javascript
-Plugin 'mattn/emmet-vim'                  " Web snippets
-Plugin 'othree/html5.vim'                 " HTML5 omnicomplete and syntax
-Plugin 'alfredodeza/pytest.vim'           " py.test
-Plugin 'jmcantrell/vim-virtualenv'        " Set path to virtualenv
-Plugin 'tpope/vim-surround'               " Surround ([{..
-Plugin 'rodjek/vim-puppet'                " Puppet syntax
-Plugin 'gabrielhaim/vim-colors-solarized' " Nice colors
-Plugin 'scrooloose/syntastic'             " Syntax checker
-Plugin 'kchmck/vim-coffee-script'         " Coffeescript swiss tool
-Plugin 'mustache/vim-mustache-handlebars' " Handlebars
-Plugin 'groenewege/vim-less'              " Less
-Plugin 'vim-scripts/Align'                " SQL dependency
-Plugin 'vim-scripts/SQLUtilities'         " SQL Formatter and tools
-Plugin 'tpope/vim-vinegar'                " Better directory viewer
-Plugin 'elzr/vim-json'                    " Better JSON syntax
-Plugin 'tpope/vim-fireplace'              " Clojure plugin
-Plugin 'fatih/vim-go'                     " Better go
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'dense-analysis/ale'
+Plug 'elzr/vim-json', {'for': 'json'}
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'itchyny/lightline.vim'
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'morhetz/gruvbox'
+Plug 'rking/ag.vim'
+Plug 'solarnz/thrift.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-vinegar'
+" Plug 'ycm-core/YouCompleteMe'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+call plug#end()
 
-" Powerline setup
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+" Load coc-vim settings
+source ~/.vim/coc-vim.vim
 
-" Folding"
+" Ligthline setup
+let g:lightline = {'colorscheme': 'jellybeans'}
+
+" Automagically run goimports on save
+let g:go_fmt_command = "goimports"
+
+" Vim Go
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+
+" Run lint and vet on save
+let g:go_metalinter_command = "golangci-lint"
+let g:ale_linters = {'go': 'gopls'}
+
+" YCM disable for Go
+let g:ycm_filetype_blacklist = {'go': 1}
+
+" Folding
 set foldmethod=indent
 set foldlevel=99
 set foldnestmax=2
 
-" Mapping for changing windows"
+" Mapping for changing windows
 map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 
-"Mapping to copy from visual to system clipboard"
+" Mapping to copy from visual to system clipboard
 map <c-c> "+y
 map <c-b> "+p
 
@@ -71,25 +67,26 @@ set number
 set hidden
 
 " Use mouse with wim
-set mouse=a
-set ttymouse=xterm2
+" set mouse=a
+" if !has('nvim')
+" 	set ttymouse=xterm2
+" endif
 
 " Set colors scheme"
 set t_Co=256
 set background=dark
-colorscheme solarized
+colorscheme gruvbox
 
 " Map leader to ','"
 let mapleader = ","
 
-" Plugin  mapping"
+" Plugin mapping"
+map <leader>n :NERDTree<CR>
+map <leader>p :CtrlP<CR>
+map <leader>g :GundoToggle<CR>
+map <leader>j :YcmCompleter GoTo<CR>
+map <leader>jd :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>a :Ag!
-nnoremap <leader>g :GundoToggle<CR>
-nnoremap <leader>j :RopeGotoDefinition<CR>
-nnoremap <leader>jd :YcmCompleter GoTo<CR>
-nnoremap <leader>n :NERDTree<CR>
-nnoremap <leader>p :CtrlP<CR>
-nnoremap <leader>r :RopeRename<CR>
 
 " CtrlP parameters
 let g:ctrlp_custom_ignore = {
@@ -98,23 +95,8 @@ let g:ctrlp_custom_ignore = {
   \ 'link': '',
   \ }
 
-" Flake 8 parameters
-autocmd FileType python map <leader>8 :call Flake8()<CR>
-let g:syntastic_enable_highlighting=1
-let g:syntastic_enable_signs=1
-let g:syntastic_error_symbol='✘'
-let g:syntastic_warning_symbol='☡'
-let g:syntastic_sign_bg_default=1
-
-let g:flake8_max_line_length=79
-let g:flake8_max_complexity=12
-
-" Go parameters
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
+" JSON quote concealing
+let g:vim_json_syntax_conceal = 0
 
 " Markdown parameters
 let g:vim_markdown_folding_disabled=1
@@ -130,6 +112,9 @@ runtime macros/matchit.vim
 " Better completion"
 set wildmenu
 set wildmode=list:longest
+
+" Ignore some files
+set wildignore+=*.pyc
 
 " Casesmart searching"
 set ignorecase
@@ -170,14 +155,15 @@ nmap <silent> <leader>s :set nolist!<CR>
 autocmd Filetype sh set ts=4 shiftwidth=2 expandtab
 autocmd Filetype mkd set sts=4 shiftwidth=4 expandtab
 autocmd Filetype sql set sts=4 shiftwidth=4 expandtab
-autocmd Filetype go set sts=4 shiftwidth=4 expandtab
-autocmd Filetype go set sts=4 shiftwidth=4 expandtab nolist
+autocmd Filetype python set sts=4 shiftwidth=4 expandtab
 autocmd Filetype nginx set sts=4 shiftwidth=4 expandtab
 autocmd Filetype jade set sts=2 shiftwidth=2 expandtab
 autocmd Filetype coffee set sts=2 shiftwidth=2 expandtab
 autocmd Filetype json set sts=2 shiftwidth=2 expandtab
 autocmd Filetype eco set sts=2 shiftwidth=2 expandtab
+autocmd Filetype cucumber set sts=2 shiftwidth=2 expandtab
 autocmd Filetype javascript set sts=2 shiftwidth=2 expandtab
+autocmd Filetype lisp set sts=2 shiftwidth=2 expandtab
 autocmd Filetype ruby set sts=2 shiftwidth=2 expandtab
 autocmd Filetype xml set sts=2 shiftwidth=2 expandtab
 autocmd Filetype html set sts=2 shiftwidth=2 expandtab
@@ -185,14 +171,21 @@ autocmd Filetype htmldjango set sts=2 shiftwidth=2 expandtab
 autocmd Filetype yaml set sts=2 shiftwidth=2 expandtab
 autocmd Filetype yml set sts=2 shiftwidth=2 expandtab
 autocmd Filetype less set sts=2 shiftwidth=2 expandtab
+autocmd Filetype scss set sts=2 shiftwidth=2 expandtab
 autocmd Filetype java set sts=2 shiftwidth=2 expandtab nolist
+autocmd Filetype cpp set sts=4 shiftwidth=4 expandtab nolist
 autocmd Filetype stylus set sts=2 shiftwidth=2 expandtab
 autocmd Filetype xslt,diff set expandtab
 
+autocmd BufReadPre viper,.viper set filetype=lisp
 autocmd BufRead *.py set cindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-autocmd BufRead *.py nnoremap <c-p> :normal oimport ipdb; ipdb.set_trace()<esc>
-autocmd BufNewFile,BufRead requirements*.txt set ft=config
-autocmd BufNewFile,BufRead *.json,*.conf set ft=json
+autocmd BufRead *.py nnoremap <c-p> :normal oimport pdb; pdb.set_trace()<esc>
+autocmd BufNewFile,BufRead requirements*.txt set filetype=config
+autocmd BufNewFile,BufRead *.json set ft=json
+autocmd BufNewFile,BufRead *.j2 set ft=python
 autocmd BufNewFile,BufRead *.yaml,*.yml set ft=yaml
+autocmd BufNewFile,BufRead *.hql set ft=sql
 autocmd BufRead,BufNewFile *.cnf set ft=gitconfig
 autocmd BufRead,BufNewFile /etc/nginx/*,/usr/local/etc/nginx/* if &ft == 'json' | set ft=nginx | endif
+autocmd BufRead,BufNewFile *.go setlocal noet ts=4 sw=4 sts=4 nolist
+autocmd BufRead,BufNewFile *.c setlocal noet ts=4 sw=4 sts=4
